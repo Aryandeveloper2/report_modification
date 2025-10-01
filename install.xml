@@ -70,7 +70,7 @@ $_['column_mobile']          = 'موبایل';
 <file path="admin/model/extension/report/customer_transaction.php">
   <operation>
     <search><![CDATA[c.email,]]></search>
-    <add position="replace"><![CDATA[c.email, c.telephone,]]></add>
+    <add position="replace"><![CDATA[c.email, c.mobile,]]></add>
   </operation>
 </file>
 
