@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+<name> show customer mobile report section </name>
+<code> show customer mobile report section</code>
+<version>1.0.0</version>
+<author>mahdi tanbakochiyan</author>
+<link></link>
+
+
+
+
+<file path="admin/model/extension/report/customer.php">
+  <operation>
+    <search><![CDATA[t.customer_id,]]></search>
+    <add position="replace"><![CDATA[t.customer_id, t.mobile,]]></add>
+  </operation>
+
+  <operation>
+    <search><![CDATA[SELECT c.customer_id,]]></search>
+    <add position="replace"><![CDATA[SELECT c.customer_id, c.mobile,]]></add>
+  </operation>
+</file>
+
+
+<file path="admin/controller/extension/report/customer_order.php">
+  <operation>
+    <search><![CDATA['customer_group' => $result['customer_group'],]]></search>
+    <add position="after"><![CDATA[
+        	'mobile'         => $result['mobile'],
+    ]]></add>
+  </operation>
+</file>
+
+
+<file path="admin/view/template/extension/report/customer_order_info.twig">
+<operation>
+<search>
+<![CDATA[ <td class="text-left">{{ column_email }}</td> ]]>
+</search>
+<add position="replace">
+<![CDATA[ <td class="text-left"> {{ column_mobile }} / {{ column_email }}</td> ]]>
+</add>
+</operation>
+
+
+<operation>
+<search>
+<![CDATA[ <td class="text-left">{{ customer.email }}</td> ]]>
+</search>
+<add position="replace">
+<![CDATA[ <td class="text-left">{{ customer.mobile }} <br> {{ customer.email }}</td> ]]>
+</add>
+</operation>
+
+</file>
+
+<file path="admin/language/fa-ir/extension/report/customer_order.php">
+<operation>
+<search><![CDATA[$_['column_email']          = 'ایمیل';]]></search>
+<add position="after"><![CDATA[
+$_['column_mobile']          = 'موبایل';
+]]></add>
+</operation>
+</file>
+
+</modification>
